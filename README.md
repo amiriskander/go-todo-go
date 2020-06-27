@@ -19,3 +19,4 @@ application.
 ## References
 - https://medium.com/better-programming/build-a-simple-todolist-app-in-golang-82297ec25c7d
 - https://tutorialedge.net/golang/golang-mysql-tutorial/
+- https://towardsdatascience.com/use-environment-variable-in-your-next-golang-project-39e17c3aaa66

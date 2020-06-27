@@ -4,9 +4,11 @@ import (
 	"encoding/json"
 	"io"
 	"net/http"
+	"os"
 	"strconv"
 
 	"github.com/gorilla/mux"
+	"github.com/joho/godotenv"
 	"github.com/rs/cors"
 	log "github.com/sirupsen/logrus"
 
@@ -15,7 +17,7 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
-var db, _ = gorm.Open("mysql", "root:password@/go_todoapp_1?charset=utf8&parseTime=True&loc=Local")
+var db, _ = gorm.Open("mysql", Env("DB_USER")+":"+Env("DB_PASSWORD")+"@/"+Env("DB_NAME")+"?charset=utf8&parseTime=True&loc=Local")
 
 func Healthz(w http.ResponseWriter, r *http.Request) {
 	log.Info("API Health is OK")
@@ -116,6 +118,15 @@ func GetTodoItems(completed bool) interface{} {
 	var todos []Todo
 	TodoItems := db.Where("completed = ?", completed).Find(&todos).Value
 	return TodoItems
+}
+
+// Get environment variable
+func Env(key string) string {
+	err := godotenv.Load(".env")
+	if err != nil {
+		log.Fatalf("Error loading .env file")
+	}
+	return os.Getenv(key)
 }
 
 func main() {
