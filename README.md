@@ -7,6 +7,8 @@ application.
 ### Used Packages
 - `encoding/json`
 - `io`
+- `os`
+- `github.com/joho/godotenv`
 - `net/http`
 - `strconv`
 - `github.com/gorilla/mux`
