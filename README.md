@@ -4,7 +4,7 @@
 A simple demonstration for GoLang programming language by creating a Todo List
 application.
 
-### User Packages
+### Used Packages
 - `encoding/json`
 - `io`
 - `net/http`
